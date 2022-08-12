@@ -84,7 +84,8 @@ body {
   font-weight: 100;
 }
 
-.task li {
+.task li,
+.list-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -131,11 +132,14 @@ body {
 }
 
 .checkInput {
-  position: relative;
-  left: -1rem;
+  font-size: 2rem;
+  color: #000;
+  margin-left: 0.3rem;
 }
 
 .label {
+  text-align: center;
   width: 90%;
   color: black;
+  padding-right: 3rem;
 }

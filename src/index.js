@@ -2,10 +2,10 @@ import './index.css';
 
 const tasks = {
   data: [
-    { description: 'Learn JavaScript', completed: false, index: 0 },
-    { description: 'Learn React', completed: false, index: 1 },
-    { description: 'Learn Vue', completed: false, index: 2 },
-    { description: 'Learn Angular', completed: false, index: 3 },
+    { description: 'Learn JavaScript', completed: false, index: 1 },
+    { description: 'Learn React', completed: false, index: 2 },
+    { description: 'Learn Vue', completed: false, index: 3 },
+    { description: 'Learn Angular', completed: false, index: 4 },
   ],
 };
 
@@ -39,41 +39,41 @@ window.onload = () => {
   showtoDoList();
 };
 
-// const list = document.getElementById('list');
-// const input = document.getElementById('input');
-// const btnEnter = document.getElementById('enter');
+const list = document.getElementById('list');
+const input = document.getElementById('input');
+const btnEnter = document.getElementById('enter');
 
-// // Add task function
+// Add task function
 
-// const addTask = (task) => {
-//   const element = `
-//   <li class='list-item' id='element'>          
-//     <i class='far fa-square co" id='0' data-='finished'></i>
-//     <p class='text'>${task}</p>
-//     <i class='fas fa-trash de' id='0' data-='eliminated'></i>
-//   </li>
-// `;
-//   list.insertAdjacentHTML('beforeend', element);
-// };
+const addTask = (task) => {
+  const element = `
+  <li class='list-item' id='element'>          
+    <i class='far fa-square co' id='0' data-='finished'></i>
+    <p class='text'>${task}</p>
+    <i class='fas fa-trash de' id='0' data-='eliminated'></i>
+  </li>
+`;
+  list.insertAdjacentHTML('beforeend', element);
+};
 
-// btnEnter.addEventListener('click', () => {
-//   const task = input.value;
-//   if (task === '') {
-//     alert('Please enter a task');
-//   } else {
-//     addTask(task);
-//     input.value = '';
-//   }
-// });
+btnEnter.addEventListener('click', () => {
+  const task = input.value;
+  if (task === '') {
+    alert('Please enter a task');
+  } else {
+    addTask(task);
+    input.value = '';
+  }
+});
 
-// document.addEventListener('keyup', (e) => {
-//   if (e.key === 'Enter') {
-//     const task = input.value;
-//     if (task === '') {
-//       alert('Please enter a task');
-//     } else {
-//       addTask(task);
-//       input.value = '';
-//     }
-//   }
-// });
+document.addEventListener('keyup', (e) => {
+  if (e.key === 'Enter') {
+    const task = input.value;
+    if (task === '') {
+      alert('Please enter a task');
+    } else {
+      addTask(task);
+      input.value = '';
+    }
+  }
+});
