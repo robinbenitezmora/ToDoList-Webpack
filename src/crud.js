@@ -1,5 +1,3 @@
-import { storage } from './storage.js';
-
 const list = document.getElementById('list');
 const input = document.getElementById('input');
 const btnEnter = document.getElementById('enter');
