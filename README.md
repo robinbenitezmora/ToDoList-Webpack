@@ -1,10 +1,10 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Awesome Books with ES6
+# To Do List -Webpack
 
 
 >
-This project is a basic website that will allow to the users to add, remove, get and save tasks from a group or list using JavaScript objects, modules and ES6.
+This project is a basic website that will allow to the users to add, remove, get and save tasks from a group or list using JavaScript objects, modules, Webpack and ES6.
 
 ## Built With
 
@@ -14,6 +14,7 @@ This project is a basic website that will allow to the users to add, remove, get
 - Visual Studio Code.
 - Git
 - GitHub
+- Webpack
 
 
 ## Getting Started
@@ -41,11 +42,13 @@ If you want to clone this project:
 ### Install
 Clone this repository (you must have [Git Installed](https://github.com/git-guides/install-git))
 
-`git clone git@github.com:robinbenitezmora/ToDoList.git`
+`git clone git@github.com:robinbenitezmora/ToDoList-Webpack.git`
 
-Then, move to the newly created folder `ToDoList` using this command
+Then, move to the newly created folder `ToDoList-Webpack` using this command
 
-`cd ToDoList`
+`cd ToDoList-Webpack`
+
+Then, install dependencies using this command
 
 Then, install dependencies using this command
 
