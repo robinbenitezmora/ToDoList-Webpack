@@ -50,5 +50,3 @@ const addTask = (task) => {
 const newTask = new Tasks('', false, 0);
 activities.push(newTask);
 storage(activities);
-
-export default addTask;
