@@ -1,0 +1,145 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+:root {
+  --background-body: rgb(255, 255, 255, 0.5);
+  --container: #fff;
+  --container-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  --formulary-input: #ccc;
+  --formulary-background: #fff;
+}
+
+body {
+  background-color: var(--background-body);
+  font-family: 'Roboto', sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 50%;
+  height: auto;
+  width: 25rem;
+  margin: 0 auto;
+  padding: 1rem;
+  background-color: var(--container);
+  border-radius: 0.5rem;
+  box-shadow: var(--container-shadow);
+  gap: 0.5rem;
+}
+
+/* Add Tasks */
+.add-task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  padding: 0.5rem;
+}
+
+.add-task:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.add-task input::placeholder {
+  color: #333;
+  font-size: 1rem;
+  font-weight: 200;
+}
+
+.add-task input {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem;
+  border: none;
+  font-size: 1rem;
+  font-weight: 200;
+  color: #333;
+  background-color: var(--formulary-background);
+  font-style: italic;
+}
+
+.add-task i {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* TASK SECTION */
+.task h3 {
+  color: #222;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 100;
+}
+
+.task li,
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  margin: 0.5rem 0;
+  background-color: var(--formulary-background);
+}
+
+.task i {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.task i:hover {
+  color: #000;
+  cursor: pointer;
+}
+
+.task > ul p {
+  font-size: 1rem;
+  font-weight: 200;
+  color: #333;
+}
+
+.line-through {
+  text-decoration: line-through;
+}
+
+.deleteBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 4rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: 200;
+  color: #333;
+  background-color: rgb(252, 245, 245);
+  border: none;
+}
+
+.checkInput {
+  font-size: 2rem;
+  color: #000;
+  margin-left: 0.3rem;
+}
+
+.label {
+  text-align: center;
+  width: 90%;
+  color: black;
+  padding-right: 3rem;
+}
