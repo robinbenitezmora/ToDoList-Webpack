@@ -1,3 +1,3 @@
-export const storage = (task) => {
+export default storage = (task) => {
   localStorage.setItem('taks', JSON.stringify(task));
 };

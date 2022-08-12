@@ -1,18 +1,18 @@
-import { storage } from "./storage";
+import { storage } from './storage.js';
 
 const list = document.getElementById('list');
 const input = document.getElementById('input');
 const btnEnter = document.getElementById('enter');
 
-class Tasks { 
-  constructor (description, completed, index) {
+class Tasks {
+  constructor(description, completed, index) {
     this.description = description;
     this.completed = completed;
     this.index = index;
   }
 }
 
-let activities = [];
+const activities = [];
 
 // Add task function
 
@@ -47,10 +47,10 @@ const addTask = (task) => {
       }
     }
   });
-}
+};
 
 const newTask = new Tasks('', false, 0);
 activities.push(newTask);
 storage(activities);
 
-export { addTask };
+export default addTask;

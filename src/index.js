@@ -13,7 +13,7 @@ const addTask = (task) => {
   </li>
 `;
   list.insertAdjacentHTML('beforeend', element);
-}
+};
 
 btnEnter.addEventListener('click', () => {
   const task = input.value;
@@ -36,4 +36,3 @@ document.addEventListener('keyup', (e) => {
     }
   }
 });
-
