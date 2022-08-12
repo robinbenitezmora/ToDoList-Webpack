@@ -1,4 +1,3 @@
-import { data } from 'browserslist';
 import './index.css';
 
 const tasks = {
@@ -12,8 +11,8 @@ const tasks = {
 
 const toDoList = tasks.data;
 const showtoDoList = () => {
-  const toDoListElement = document.getElementById('List');
-  toDoListElement.innerHTML = '';
+  const ListElement = document.getElementById('list');
+  ListElement.innerHTML = '';
   toDoList.forEach((data) => {
     const toDoListItem = document.createElement('li');
     const checkboxItem = document.createElement('input');
@@ -32,7 +31,7 @@ const showtoDoList = () => {
 
     toDoListItem.appendChild(checkboxItem);
     toDoListItem.appendChild(toDoListDescriptionItem);
-    toDoListElement.appendChild(toDoListItem);
+    ListElement.appendChild(toDoListItem);
   });
 };
 

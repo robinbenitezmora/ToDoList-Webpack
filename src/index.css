@@ -129,3 +129,13 @@ body {
   background-color: rgb(252, 245, 245);
   border: none;
 }
+
+.checkInput {
+  position: relative;
+  left: -1rem;
+}
+
+.label {
+  width: 90%;
+  color: black;
+}
