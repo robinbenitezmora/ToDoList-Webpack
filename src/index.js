@@ -1,82 +1,165 @@
 import './index.css';
 
-const info = {
-  data: [{ description: 'Javascript', completed: false, index: 1 },
-    { description: 'HTML', completed: false, index: 2 },
-    { description: 'CSS', completed: false, index: 3 },
-    { description: 'React', completed: false, index: 4 },
-    { description: 'Node', completed: false, index: 5 },
-    { description: 'MongoDB', completed: false, index: 6 },
-    { description: 'Express', completed: false, index: 7 }],
+const desc = document.getElementById('input');
+
+let tasksList = [];
+let isModified = false;
+let todoModified = null;
+
+const getData = () => {
+  const localFormData = JSON.parse(localStorage.getItem('todo'));
+  if (localFormData === null) {
+    tasksList = [];
+  } else {
+    tasksList = localFormData;
+  }
 };
 
-const toDoList = info.data;
-const displayToDo = () => {
-  const ListElement = document.getElementById('list');
-  ListElement.innerHTML = '';
+const saveData = () => {
+  localStorage.setItem('todo', JSON.stringify(tasksList));
+};
 
-  toDoList.forEach((data) => {
-    const todoLiElement = document.createElement('li');
+const showtasksList = () => {
+  const ul = document.getElementById('list');
+  ul.innerHTML = '';
 
-    const todoCheckboxElement = document.createElement('input');
-    todoCheckboxElement.classList.add('checkInput');
-    todoCheckboxElement.setAttribute('type', 'checkbox');
-    todoCheckboxElement.setAttribute('name', 'checkbox');
-    todoCheckboxElement.setAttribute('value', data.index);
+const edittasksList = (todo) => {
+  isModified = true;
+  todoModified = todo;
+  desc.value = todo.description;
+  desc.focus();
+};
 
-    if (data.completed) {
-      todoCheckboxElement.checked = true;
-    }
+const removetasksList = (indexID) => {
+  desc.value = null;
+  isModified = false;
 
-    const todoDescriptionElement = document.createElement('p');
-    todoDescriptionElement.classList.add('label');
-    todoDescriptionElement.innerText = data.description;
+  tasksList = tasksList.filter((ind) => ind.index !== indexID);
+  tasksList = tasksList.map((todo, index) => ({
+    description: todo.description,
+    completed: todo.completed,
+    index: index + 1,
+  }));
+  showtasksList();
+};
 
-    todoLiElement.appendChild(todoCheckboxElement);
-    todoLiElement.appendChild(todoDescriptionElement);
-    ListElement.appendChild(todoLiElement);
+tasksList.forEach((data) => {
+  const li = document.createElement('li');
+  const checkbox = document.createElement('input');
+  checkbox.classList.add('checkInput');
+  checkbox.setAttribute('type', 'checkbox');
+  checkbox.setAttribute('name', 'checkbox');
+  checkbox.setAttribute('value', data.index);
+
+  if (data.completed) {
+    checkbox.checked = true;
+  }
+''
+  const todoDescription = document.createElement('p');
+  todoDescription.classList.add('label');
+  todoDescription.innerHTML = data.description;
+
+  const editButton = document.createElement('div');
+  const removeButton = document.createElement('button');
+  removeButton.classList.add('hide');
+  removeButton.setAttribute('type', 'button');
+  removeButton.innerHTML = `<i class="fa fa-lg fa-trash icon"></i>`;
+
+  const pointsBtn = document.createElement('button');
+  pointsBtn.classList.add('more-btn');
+  pointsBtn.setAttribute('type', 'button');
+  pointsBtn.innerHTML = `<i class="fa fa-ellipsis-v"></i>`;
+
+  li.appendChild(checkbox);
+  li.appendChild(todoDescription);
+
+  editButton.appendChild(removeButton);
+  editButton.appendChild(pointsBtn);
+
+  li.appendChild(editButton);
+
+  ul.appendChild(li);
+
+  removeButton.addEventListener('click', () => {
+    removetasksList(data.index);
   });
+
+  const actions = () => {
+    if (!isModified) {
+      removeButton.classList.toggle('hide');
+      desc.value = null;
+      isModified = false;
+      edittasksList(data);
+      pointsBtn.classList.toggle('hide');
+    } else {
+      showtasksList();
+      desc.value = null;
+      isModified = false;
+    }
+  };
+
+  pointsBtn.addEventListener('click', () => {
+    actions();
+  });
+
+  todoDescription.addEventListener('click', () => {
+    actions();
+  });
+});
+saveData();
 };
+
+const addtasksList = () => {
+  const desc = document.getElementById('input');
+  if (desc.value) {
+    const completed = false;
+    const description = desc.value;
+    const index = tasksList.length + 1;
+    tasksList.push({ completed, description, index });
+    showtasksList();
+    saveData();
+    desc.value = null;
+  }
+
+  tasksList = tasksList.map((todo, index) => ({
+    description: todo.description,
+    completed: todo.completed,
+    index: index + 1,
+  }));
+};
+
+const saveEdit = () => {
+  const desc = document.getElementById('input');
+  if (desc.value) {
+    tasksList = tasksList.map((todo) => {
+      if (todo.index === todoModified.index) {
+        return {
+          description: desc.value,
+          completed: todo.completed,
+          index: todo.index,
+        };
+      }
+      return todo;
+    });
+    showtasksList();
+    saveData();
+    desc.value = null;
+    isModified = false;
+    todoModified = null;
+  }
+};
+
+const getIsModified = () => isModified;
 
 window.onload = () => {
-  displayToDo();
+  getData();
+  showtasksList();
 };
 
-const list = document.getElementById('list');
-const input = document.getElementById('input');
-const btnEnter = document.getElementById('enter');
-
-// Add task function
-
-const addTask = (task) => {
-  const element = `
-  <li class='list-item' id='element'>          
-    <i class='far fa-square co" id='0' data-='finished'></i>
-    <p class='text'>${task}</p>
-    <i class='fas fa-trash de' id='0' data-='eliminated'></i>
-  </li>
-`;
-  list.insertAdjacentHTML('beforeend', element);
-};
-
-btnEnter.addEventListener('click', () => {
-  const task = input.value;
-  if (task === '') {
-    alert('Please enter a task');
-  } else {
-    addTask(task);
-    input.value = '';
-  }
-});
-
-document.addEventListener('keyup', (e) => {
-  if (e.key === 'Enter') {
-    const task = input.value;
-    if (task === '') {
-      alert('Please enter a task');
-    } else {
-      addTask(task);
-      input.value = '';
-    }
+desc.addEventListener('keyup', (e) => {
+  if (e.keyCode === 13) {
+    e.preventDefault();
+    if (!getIsModified()) addtasksList();
+    else saveEdit();
   }
 });
