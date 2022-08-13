@@ -1,6 +1,7 @@
 import './index.css';
 import {
-  getIsModified, getData, addtasksList, saveEdit, showtasksList, clearAll } from './modules/crud.js';
+  getIsModified, getData, addtasksList, saveEdit, showtasksList, clearAll,
+} from './modules/crud.js';
 
 const desc = document.getElementById('input');
 

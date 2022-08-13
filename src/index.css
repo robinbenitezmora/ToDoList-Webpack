@@ -129,6 +129,14 @@ body {
   color: #333;
   background-color: rgb(252, 245, 245);
   border: none;
+  border-radius: 0.5rem;
+}
+
+.deleteBtn:hover {
+  cursor: pointer;
+  background-color: rgb(94, 107, 93);
+  font-size: large;
+  color: #fff;
 }
 
 .checkInput {
@@ -149,7 +157,7 @@ body {
   cursor: pointer;
 }
 
-.commute {
+.commuted {
   color: #ccc;
   text-decoration: line-through;
 }

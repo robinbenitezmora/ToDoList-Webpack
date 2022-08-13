@@ -1,8 +1,12 @@
-const desc = document.getElementById('input');
-
 let tasksList = [];
 let isModified = false;
 let todoModified = null;
+
+const desc = document.getElementById('input');
+
+const saveData = () => {
+  localStorage.setItem('todo', JSON.stringify(tasksList));
+};
 
 const getData = () => {
   const localFormData = JSON.parse(localStorage.getItem('todo'));
@@ -11,10 +15,6 @@ const getData = () => {
   } else {
     tasksList = localFormData;
   }
-};
-
-const saveData = () => {
-  localStorage.setItem('todo', JSON.stringify(tasksList));
 };
 
 const showtasksList = () => {
@@ -30,22 +30,22 @@ const showtasksList = () => {
   };
 
   const removetasksList = (indexID) => {
-    desc.value = null;
-    isModified = false;
-
     tasksList = tasksList.filter((ind) => ind.index !== indexID);
     tasksList = tasksList.map((todo, index) => ({
       description: todo.description,
       completed: todo.completed,
       index: index + 1,
     }));
+    desc.value = null;
+    isModified = false;
     showtasksList();
   };
 
   const activetasksList = (todo) => {
     for (let i = 0; i < tasksList.length; i += 1) {
       if (tasksList[i].index === todo.index) {
-        tasksList[i].completed = !tasksList[i].completed;
+        tasksList[i].completed = !todo.completed;
+        break;
       }
     }
     saveData();
@@ -54,7 +54,7 @@ const showtasksList = () => {
   tasksList.forEach((data) => {
     const li = document.createElement('li');
     const checkbox = document.createElement('input');
-    li.setAttribute('draggable', 'true');
+    li.setAttribute('draggable', true);
     li.classList.add('list-group-item');
     checkbox.classList.add('checkInput');
     checkbox.setAttribute('type', 'checkbox');
@@ -63,7 +63,7 @@ const showtasksList = () => {
 
     const todoDescription = document.createElement('p');
     todoDescription.classList.add('label');
-    todoDescription.innerHTML = data.description;
+    todoDescription.innerText = data.description;
 
     const editButton = document.createElement('div');
     const removeButton = document.createElement('button');
@@ -74,7 +74,7 @@ const showtasksList = () => {
     const pointsBtn = document.createElement('button');
     pointsBtn.classList.add('more-btn');
     pointsBtn.setAttribute('type', 'button');
-    pointsBtn.innerHTML = '<i class="fa fa-ellipsis-v"></i>';
+    pointsBtn.innerHTML = '<i class="fa fa-ellipsis-v pointsBtn"></i>';
 
     li.appendChild(checkbox);
     li.appendChild(todoDescription);
@@ -118,7 +118,7 @@ const showtasksList = () => {
     });
 
     removeButton.addEventListener('click', () => {
-      actions();
+      removetasksList(data.index);
     });
 
     todoDescription.addEventListener('click', () => {
@@ -152,11 +152,7 @@ const saveEdit = () => {
   if (desc.value) {
     tasksList = tasksList.map((todo) => {
       if (todo.index === todoModified.index) {
-        return {
-          description: desc.value,
-          completed: todo.completed,
-          index: todo.index,
-        };
+        return { ...todo, description: desc.value };
       }
       return todo;
     });
