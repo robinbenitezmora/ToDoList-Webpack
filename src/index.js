@@ -13,7 +13,7 @@ desc.addEventListener('keyup', (e) => {
   }
 });
 
-const deleteButton = document.getElementById('delete');
+const deleteButton = document.getElementById('deleteBtn');
 deleteButton.addEventListener('click', () => {
   clearAll();
 });

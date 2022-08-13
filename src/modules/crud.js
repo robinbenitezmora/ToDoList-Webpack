@@ -49,7 +49,7 @@ const showtasksList = () => {
       }
     }
     saveData();
-  }; 
+  };
 
   tasksList.forEach((data) => {
     const li = document.createElement('li');
