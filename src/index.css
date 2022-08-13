@@ -149,6 +149,11 @@ body {
   cursor: pointer;
 }
 
+.commute {
+  color: #ccc;
+  text-decoration: line-through;
+}
+
 /* .more-btn {
   display: flex;
   justify-content: center;
