@@ -23,90 +23,90 @@ const showtasksList = () => {
   const ul = document.getElementById('list');
   ul.innerHTML = '';
 
-const edittasksList = (todo) => {
-  isModified = true;
-  todoModified = todo;
-  desc.value = todo.description;
-  desc.focus();
-};
-
-const removetasksList = (indexID) => {
-  desc.value = null;
-  isModified = false;
-
-  tasksList = tasksList.filter((ind) => ind.index !== indexID);
-  tasksList = tasksList.map((todo, index) => ({
-    description: todo.description,
-    completed: todo.completed,
-    index: index + 1,
-  }));
-  showtasksList();
-};
-
-tasksList.forEach((data) => {
-  const li = document.createElement('li');
-  const checkbox = document.createElement('input');
-  checkbox.classList.add('checkInput');
-  checkbox.setAttribute('type', 'checkbox');
-  checkbox.setAttribute('name', 'checkbox');
-  checkbox.setAttribute('value', data.index);
-
-  if (data.completed) {
-    checkbox.checked = true;
-  }
-''
-  const todoDescription = document.createElement('p');
-  todoDescription.classList.add('label');
-  todoDescription.innerHTML = data.description;
-
-  const editButton = document.createElement('div');
-  const removeButton = document.createElement('button');
-  removeButton.classList.add('hide');
-  removeButton.setAttribute('type', 'button');
-  removeButton.innerHTML = `<i class="fa fa-lg fa-trash icon"></i>`;
-
-  const pointsBtn = document.createElement('button');
-  pointsBtn.classList.add('more-btn');
-  pointsBtn.setAttribute('type', 'button');
-  pointsBtn.innerHTML = `<i class="fa fa-ellipsis-v"></i>`;
-
-  li.appendChild(checkbox);
-  li.appendChild(todoDescription);
-
-  editButton.appendChild(removeButton);
-  editButton.appendChild(pointsBtn);
-
-  li.appendChild(editButton);
-
-  ul.appendChild(li);
-
-  removeButton.addEventListener('click', () => {
-    removetasksList(data.index);
-  });
-
-  const actions = () => {
-    if (!isModified) {
-      removeButton.classList.toggle('hide');
-      desc.value = null;
-      isModified = false;
-      edittasksList(data);
-      pointsBtn.classList.toggle('hide');
-    } else {
-      showtasksList();
-      desc.value = null;
-      isModified = false;
-    }
+  const edittasksList = (todo) => {
+    isModified = true;
+    todoModified = todo;
+    desc.value = todo.description;
+    desc.focus();
   };
 
-  pointsBtn.addEventListener('click', () => {
-    actions();
-  });
+  const removetasksList = (indexID) => {
+    desc.value = null;
+    isModified = false;
 
-  todoDescription.addEventListener('click', () => {
-    actions();
+    tasksList = tasksList.filter((ind) => ind.index !== indexID);
+    tasksList = tasksList.map((todo, index) => ({
+      description: todo.description,
+      completed: todo.completed,
+      index: index + 1,
+    }));
+    showtasksList();
+  };
+
+  tasksList.forEach((data) => {
+    const li = document.createElement('li');
+    const checkbox = document.createElement('input');
+    checkbox.classList.add('checkInput');
+    checkbox.setAttribute('type', 'checkbox');
+    checkbox.setAttribute('name', 'checkbox');
+    checkbox.setAttribute('value', data.index);
+
+    if (data.completed) {
+      checkbox.checked = true;
+    }
+
+    const todoDescription = document.createElement('p');
+    todoDescription.classList.add('label');
+    todoDescription.innerHTML = data.description;
+
+    const editButton = document.createElement('div');
+    const removeButton = document.createElement('button');
+    removeButton.classList.add('hide');
+    removeButton.setAttribute('type', 'button');
+    removeButton.innerHTML = '<i class="fa fa-lg fa-trash icon"></i>';
+
+    const pointsBtn = document.createElement('button');
+    pointsBtn.classList.add('more-btn');
+    pointsBtn.setAttribute('type', 'button');
+    pointsBtn.innerHTML = '<i class="fa fa-ellipsis-v"></i>';
+
+    li.appendChild(checkbox);
+    li.appendChild(todoDescription);
+
+    editButton.appendChild(removeButton);
+    editButton.appendChild(pointsBtn);
+
+    li.appendChild(editButton);
+
+    ul.appendChild(li);
+
+    removeButton.addEventListener('click', () => {
+      removetasksList(data.index);
+    });
+
+    const actions = () => {
+      if (!isModified) {
+        removeButton.classList.toggle('hide');
+        desc.value = null;
+        isModified = false;
+        edittasksList(data);
+        pointsBtn.classList.toggle('hide');
+      } else {
+        showtasksList();
+        desc.value = null;
+        isModified = false;
+      }
+    };
+
+    pointsBtn.addEventListener('click', () => {
+      actions();
+    });
+
+    todoDescription.addEventListener('click', () => {
+      actions();
+    });
   });
-});
-saveData();
+  saveData();
 };
 
 const addtasksList = () => {
