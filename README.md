@@ -58,7 +58,7 @@ To open the project in Visual Studio Code type the following command inside the 
 
 In order to visualize the project in your browser either open the index.html file directly from the file explorer or consider using a [live server for development ](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
 
-The current version you can check it in your machine by means of the following url: [live server for development ](https://robinbenitezmora.github.io/ToDoList-Webpack/)
+The current version you can check it in your machine by means of the following url: [To Do List ](https://robinbenitezmora.github.io/ToDoList-Webpack/)
 
 ## Authors
 
