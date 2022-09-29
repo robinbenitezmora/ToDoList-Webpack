@@ -17,7 +17,7 @@ This project is a basic website that will allow to the users to add, remove, get
 - Webpack
 
 ## 💻 Live demo
-- [Live Demo Link](https://robinbenitezmora.github.io/ToDoList-Webpack/dist)
+- [Live Demo Link](https://lustrous-rugelach-b7ae79.netlify.app/)
 
 ## Getting Started
 
